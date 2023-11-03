@@ -13,21 +13,17 @@ export class BooksService {
     console.log(user);
     return await this.bookRepo.save(user);
   }
-
   async findAll() {
     return await this.bookRepo.find({});
   }
-
   async findOne(id: number) {
     return await this.bookRepo.findOneBy({ id: id });
   }
-
   async update(id: number, updateBookInput: UpdateBookInput) {
     const { id: bookId, ...rest } = updateBookInput;
      await this.bookRepo.update({ id: id }, rest);
     return rest;
   }
-
   async remove(id: number) {
     const book = await this.bookRepo.findOneBy({ id: id });
     await this.bookRepo.delete({ id: id });
